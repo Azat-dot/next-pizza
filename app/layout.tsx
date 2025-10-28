@@ -19,7 +19,7 @@ export default function RootLayout({
         <link data-rh="true" rel="icon" href="/logo.png" />
       </head>
       <body className={nunito.className}>
-              <h1>Hello world</h1>
+           <main className='min-h-screen'>{children} </main> 
       </body>
     </html>
   );
