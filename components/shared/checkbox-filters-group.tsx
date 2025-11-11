@@ -3,7 +3,6 @@
 import React from "react";
 import { FilterCheckbox, FilterCheckboxProps } from "./filter-checkbox";
 import { Input } from "../ui";
-import Input_ from "postcss/lib/input";
 
 type Item = FilterCheckboxProps
 

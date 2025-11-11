@@ -16,7 +16,7 @@ export const Filters: React.FC<Props> = ({className}) => {
 {/* Верхняя филтрация  */}
             <div className="flex flex-col gab-4">
                 <FilterCheckbox text="Можно собирать" value="1" />
-                <FilterCheckbox text="новинки" value="2" />
+                <FilterCheckbox text="Новинки" value="2" />
             </div>
 {/* Филтрация по цене */}
             <div className="mt-5 border-y border-y-neutral-100 py-6 pb-7">
