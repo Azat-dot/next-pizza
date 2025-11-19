@@ -8,11 +8,13 @@ export async function GET(req: NextRequest) {
         where: {
             name: {
                 contains: query,
-                mode: 'insensitive'
+                mode: 'insensitive',
             },
+
         },
         take: 5,
     })
 
-    return NextResponse.json(products);
+    return NextResponse.json(products)
+    
 }
