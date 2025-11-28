@@ -11,5 +11,11 @@ export { RangeSlider } from "./range-slider";
 export { CheckboxFiltersGroup } from "./checkbox-filters-group";
 export { ProductCard } from "./product-card";
 export { ProductsGroupList } from "./products-group-list";
+export { PizzaImage } from "./pizza-image";
+export { GroupVariants } from "./group-variants";
+export { ChooseProductForm } from "./choose-product-form";
+export { ChoosePizzaForm } from "./choose-pizza-form";
+export { IngredientItem } from "./ingredient-item";
+export * from './modals'
 
 

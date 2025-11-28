@@ -28,11 +28,11 @@ export const InfoBlock: React.FC<Props> = ({ className, title, text, imageUrl })
               На главную
             </Button>
           </Link>
-          <a href="">
+          <Link href="">
             <Button variant="outline" className="text-gray-500 border-gray-400 hover:bg-gray-50">
               Обновить
             </Button>
-          </a>
+          </Link>
         </div>
       </div>
 

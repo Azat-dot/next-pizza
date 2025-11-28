@@ -1,4 +1,4 @@
-import { ChoosePizzaForm } from '@/components/shared/choose-pizza-form';
+import { ChoosePizzaForm } from '@/components/shared/choose-product-form';
 import { Container } from '@/components/shared/container';
 import { ProductsGroupList } from '@/components/shared/products-group-list';
 import { prisma } from '@/lib/prisma';
