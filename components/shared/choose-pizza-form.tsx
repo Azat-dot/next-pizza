@@ -38,10 +38,8 @@ export const ChoosePizzaForm: React.FC<Props> = ({
 const {size, type, selectedIngredients, availableSizes, setSize, setType, addIngredient} = usePizzaOptions(items)
   
 const {totalPrice, textDetails} = getPizzaDetails(type, size, items, ingredients, selectedIngredients)
-  
- 
 
-  const handleClickAdd = () => {
+const handleClickAdd = () => {
     onClickCart?.();
     console.log({
       size,
