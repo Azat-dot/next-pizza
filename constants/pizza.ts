@@ -1,10 +1,10 @@
-const mapSize = {
+export const mapSize = {
   20: 'Маленькая',
   30: 'Средняя',
   40: 'Большая',
 } as const;
 
-const mapType = {
+export const mapType = {
   1: 'традиционная',
   2: 'тонкая',
 } as const;

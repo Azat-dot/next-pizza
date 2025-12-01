@@ -17,6 +17,8 @@ import React from 'react';
 import { Title } from './title';
 import clsx from 'clsx';
 import Link from 'next/link';
+import { CartDrawerItem } from './cart-drawer-item';
+import { getCartItemDetails } from '@/lib';
 // import { useCart } from '@/hooks/use-cart';
 
 export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
@@ -58,6 +60,16 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
           {totalAmount > 0 && (
             <>
               <div className="-mx-6 mt-5 overflow-auto flex-1">
+                <div className="mb-2">
+                    <CartDrawerItem
+                      id={1}
+                      name={'Сырная'}
+                      imageUrl={'https://media.dodostatic.net/image/r:233x233/11EE7D610CF7E265B7C72BE5AE757CA7.webp'}
+                      price={419}
+                      quantity={1}
+                      details={getCartItemDetails(2, 30, [{name: 'Цыпленок'}, { name: 'Сыр'}])}
+                    />
+                  </div>
                 {/* {items.map((item) => (
                   <div key={item.id} className="mb-2">
                     <DrawerCartItem
