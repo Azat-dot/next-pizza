@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
       where: {
         OR: [
           {
-            token: cartToken,
+            tokenId: cartToken,
           },
         ],
       },

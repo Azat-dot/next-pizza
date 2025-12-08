@@ -19,13 +19,16 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { CartDrawerItem } from './cart-drawer-item';
 import { getCartItemDetails } from '@/lib';
+import { useCartStore } from '@/store';
+import { PizzaSize, PizzaType } from '@/constants/pizza';
 // import { useCart } from '@/hooks/use-cart';
 
 export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const [redirecting, setRedirecting] = React.useState(false);
+  const [totalAmount, fetchCartItems, items] = useCartStore(state => [state.totalAmount, state.fetchCartItems, state.items]);
 
-//   const { totalAmount, items, loading } = useCart(true);
-    const totalAmount = 35
+  React.useEffect(() => {
+    fetchCartItems()
+  }, [])
 
   return (
     <Sheet>
@@ -34,9 +37,9 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
         <div className={clsx('flex flex-col h-full', !totalAmount && 'justify-center')}>
           {totalAmount > 0 && (
             <SheetHeader>
-              {/* <SheetTitle>
+              <SheetTitle>
                 В корзине <span className="font-bold">{items.length} товара</span>
-              </SheetTitle> */}
+              </SheetTitle>
             </SheetHeader>
           )}
 
@@ -60,30 +63,25 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
           {totalAmount > 0 && (
             <>
               <div className="-mx-6 mt-5 overflow-auto flex-1">
-                <div className="mb-2">
-                    <CartDrawerItem
-                      id={1}
-                      name={'Сырная'}
-                      imageUrl={'https://media.dodostatic.net/image/r:233x233/11EE7D610CF7E265B7C72BE5AE757CA7.webp'}
-                      price={419}
-                      quantity={1}
-                      details={getCartItemDetails(2, 30, [{name: 'Цыпленок'}, { name: 'Сыр'}])}
-                    />
-                  </div>
-                {/* {items.map((item) => (
+                {items.map((item) => (
                   <div key={item.id} className="mb-2">
-                    <DrawerCartItem
+                    <CartDrawerItem
                       id={item.id}
                       name={item.name}
                       imageUrl={item.imageUrl}
                       price={item.price}
-                      ingredients={item.ingredients}
                       quantity={item.quantity}
-                      pizzaSize={item.pizzaSize}
-                      type={item.type}
+                      details={item.pizzaSize && item.pizzaType 
+                        ? getCartItemDetails(
+                            item.ingredients,
+                            item.pizzaType as PizzaType,
+                            item.pizzaSize as PizzaSize,
+                      )
+                      : ''
+                    }
                     />
                   </div>
-                ))} */}
+                ))}
               </div>
 
               <SheetFooter className="-mx-6 bg-white p-8">
@@ -99,7 +97,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
 
                   <Link href="/cart">
                     <Button
-                      onClick={() => setRedirecting(true)}
+                      onClick={() => (console.log("Hello"))}
                     //   loading={loading || redirecting}
                       type="submit"
                       className="w-full h-12 text-base">

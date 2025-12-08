@@ -1,7 +1,7 @@
 import { Container, Filters, ProductsGroupList, Title, TopBar } from "@/components/shared";
 import { prisma } from "@/prisma/prisma-client";
 
-export default async function Home() {
+export default async function HomePage() {
      const categories = await prisma.category.findMany({
           include: {
                products: {
@@ -12,6 +12,7 @@ export default async function Home() {
                },
           }
      })
+
     return <>
     <Container className="mt-10">
         <Title text='Все пиццы' size="lg" className="font-extrabold"/>
