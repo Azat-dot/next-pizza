@@ -6,6 +6,11 @@ export type CartItemDTO = CartItem & {
 };
 
 export interface CartDTO extends Cart {
+  ingredients: any;
+  type: any;
+  pizzaSize: any;
+  productItem: any;
+  quantity: any;
   items: CartDTO[];
 };
 

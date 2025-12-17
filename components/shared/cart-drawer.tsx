@@ -23,7 +23,11 @@ import { useCartStore } from '@/store';
 import { PizzaSize, PizzaType } from '@/constants/pizza';
 // import { useCart } from '@/hooks/use-cart';
 
-export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
+interface Props {
+  className ?: string;
+}
+
+export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children, className }) => {
   const [totalAmount, fetchCartItems, items] = useCartStore(state => [state.totalAmount, state.fetchCartItems, state.items]);
 
   React.useEffect(() => {
@@ -43,7 +47,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
             </SheetHeader>
           )}
 
-          {!totalAmount && (
+          {/* {!totalAmount && (
             <div className="flex flex-col items-center justify-center w-72 mx-auto">
               <Image src="/assets/images/empty-box.png" alt="Empty cart" width={120} height={120} />
               <Title size="sm" text="Корзина пустая" className="text-center font-bold my-2" />
@@ -58,7 +62,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
                 </Button>
               </SheetClose>
             </div>
-          )}
+          )} */}
 
           {totalAmount > 0 && (
             <>

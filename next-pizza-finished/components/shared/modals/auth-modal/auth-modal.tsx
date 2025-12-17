@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { LoginForm } from './forms/login-form';
 import { RegisterForm } from './forms/register-form';
 import { Button } from '@/components/ui/button';
@@ -71,6 +71,8 @@ export const AuthModal: React.FC<Props> = ({ open, onClose }) => {
         <Button variant="outline" onClick={onSwitchType} type="button" className="h-12">
           {type !== 'login' ? 'Войти' : 'Регистрация'}
         </Button>
+        <DialogTitle className='sr-only'> modal</DialogTitle>
+
       </DialogContent>
     </Dialog>
   );

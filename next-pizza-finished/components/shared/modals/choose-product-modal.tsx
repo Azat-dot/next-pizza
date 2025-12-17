@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { ChoosePizzaForm } from '../choose-pizza-form';
 import { IProduct } from '@/hooks/use-choose-pizza';
 import { useRouter } from 'next/navigation';
@@ -38,6 +38,8 @@ export const ChooseProductModal: React.FC<Props> = ({ product }) => {
             onClickAdd={onCloseModal}
           />
         )}
+          <DialogTitle className='sr-only'> modal</DialogTitle>
+
       </DialogContent>
     </Dialog>
   );

@@ -3,10 +3,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
-    const cartToken = req.cookies.get('cartToken')?.value;
+    const token = req.cookies.get('cartToken')?.value;
    
 
-    if (!cartToken) {
+    if (!token) {
       return NextResponse.json({ totalAmount: 0, items: [] });
     }
 
@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
       where: {
         OR: [
           {
-            tokenId: cartToken,
+            token,
           },
         ],
       },
