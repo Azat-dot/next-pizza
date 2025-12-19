@@ -37,7 +37,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
             </SheetHeader>
           )}
 
-          {!totalAmount && (
+          {/* {!totalAmount && (
             <div className="flex flex-col items-center justify-center w-72 mx-auto">
               <Image src="/assets/images/empty-box.png" alt="Empty cart" width={120} height={120} />
               <Title size="sm" text="Корзина пустая" className="text-center font-bold my-2" />
@@ -52,7 +52,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
                 </Button>
               </SheetClose>
             </div>
-          )}
+          )} */}
 
           {totalAmount > 0 && (
             <>
