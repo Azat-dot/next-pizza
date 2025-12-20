@@ -7,6 +7,7 @@ type Item = {
   quantity: number;
 };
 
+
 export const calcCartItemTotalPrice = (item: CartItemDTO): number => {
   return (
     (item.productItem.price +

@@ -20,6 +20,7 @@ import { CartDrawerItem } from './cart-drawer-item';
 import { getCartItemDetails } from '@/lib';
 import { useCartStore } from '@/store';
 import { PizzaSize, PizzaType } from '@/constants/pizza';
+import { log } from 'console';
 
 export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
   // const [redirecting, setRedirecting] = React.useState(false);
@@ -36,7 +37,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
       <SheetTrigger asChild>{children}</SheetTrigger>
       <SheetContent className="flex flex-col justify-between pb-0 bg-[#F4F1EE]">
         <div className={clsx('flex flex-col h-full', !totalAmount && 'justify-center')}>
-          {totalAmount > 0 && (
+          { (
             <SheetHeader>
               <SheetTitle>
                 В корзине <span className="font-bold">{items.length} товара</span>
@@ -44,7 +45,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
             </SheetHeader>
           )}
 
-          {!totalAmount && (
+          {/* {!totalAmount && (
             <div className="flex flex-col items-center justify-center w-72 mx-auto">
               <Image src="/assets/images/empty-box.png" alt="Empty cart" width={120} height={120} />
               <Title size="sm" text="Корзина пустая" className="text-center font-bold my-2" />
@@ -59,7 +60,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
                 </Button>
               </SheetClose>
             </div>
-          )}
+          )} */}
 
           {/* { totalAmount > 0 && (
             <> */}
@@ -69,18 +70,19 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
                     <CartDrawerItem
                       key={item.id}
                       id={item.id}
-                      name={item.name}
                       imageUrl={item.imageUrl}
-                      price={item.price}
                       details={
-                        item.pizzaSize && item.pizzaType 
-                        ? getCartItemDetails(
-                          item.ingredients, 
-                          item.pizzaType as PizzaType, 
-                          item.pizzaSize as PizzaSize,
-                        ) 
-                        : ''
+//Ошыбка
+                        item.pizzaSize && item.pizzaType //pizzaSize, pizzaType  не передаются
+                          ? getCartItemDetails(
+                              item.ingredients, 
+                              item.pizzaType as PizzaType, 
+                              item.pizzaSize as PizzaSize,
+                            ) 
+                          : ''
                       }
+                      name={item.name}
+                      price={item.price}
                       quantity={item.quantity}
                     />
                 ))}
