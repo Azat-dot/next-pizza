@@ -14,7 +14,7 @@ export type ICartItem = {
   ingredients: Array<{ name: string; price: number }>;
 };
 
-export interface CartState {
+export interface  {
   loading: boolean;
   error: boolean;
   totalAmount: number;
@@ -25,7 +25,7 @@ export interface CartState {
   removeCartItem: (id: number) => Promise<void>;
 }
 
-export const useCartStore = create<CartState>((set, get) => ({
+export const useCartStore = create<>((set, get) => ({
   items: [],
   error: false,
   loading: true,
