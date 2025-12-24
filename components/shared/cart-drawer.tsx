@@ -11,26 +11,36 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import {ArrowRight } from 'lucide-react';
 import React from 'react';
-import { Title } from './title';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { CartDrawerItem } from './cart-drawer-item';
 import { getCartItemDetails } from '@/lib';
 import { useCartStore } from '@/store';
 import { PizzaSize, PizzaType } from '@/constants/pizza';
-import { log } from 'console';
+
 
 export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
   // const [redirecting, setRedirecting] = React.useState(false);
 
 
-    const [totalAmount, fetchCartItems, items] = useCartStore(state => [state.totalAmount, state.fetchCartItems, state.items])
+    const [totalAmount, fetchCartItems, updateItemQuantity, items] = useCartStore((state) => [
+      state.totalAmount, 
+      state.fetchCartItems,
+      state.updateItemQuantity,
+      state.items
+    ])
 
+    console.log(items)
     React.useEffect(() => {
       fetchCartItems();
     }, [])
+
+    const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
+      const newQuantity = type === "plus" ? quantity + 1 : quantity - 1;
+      updateItemQuantity(id, newQuantity)
+    };
 
   return (
     <Sheet>
@@ -73,17 +83,19 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
                       imageUrl={item.imageUrl}
                       details={
 //Ошыбка
-                        item.pizzaSize && item.pizzaType //pizzaSize, pizzaType  не передаются
-                          ? getCartItemDetails(
+                        // item.pizzaSize && item.pizzaType //pizzaSize, pizzaType  не передаются
+                        //   ? 
+                          getCartItemDetails(
                               item.ingredients, 
-                              item.pizzaType as PizzaType, 
+                              item.type as PizzaType, 
                               item.pizzaSize as PizzaSize,
                             ) 
-                          : ''
+                          // : ''
                       }
                       name={item.name}
                       price={item.price}
                       quantity={item.quantity}
+                      onClickCountButton={(type) => onClickCountButton(item.id, item.quantity, type)}
                     />
                 ))}
                  </div>
