@@ -9,6 +9,7 @@ export const getCartItemDetails = (
 ): string => {
     const details = []
 
+    console.log(pizzaType, pizzaSize)
         if (pizzaSize && pizzaType) {
         const typeName = mapType[pizzaType];
         details.push(`${typeName} ${pizzaSize} см`);

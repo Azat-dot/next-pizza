@@ -11,35 +11,45 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-// import { DrawerCartItem } from './drawer-cart-item';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import {ArrowRight } from 'lucide-react';
 import React from 'react';
-import { Title } from './title';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { CartDrawerItem } from './cart-drawer-item';
 import { getCartItemDetails } from '@/lib';
 import { useCartStore } from '@/store';
 import { PizzaSize, PizzaType } from '@/constants/pizza';
-// import { useCart } from '@/hooks/use-cart';
 
-interface Props {
-  className ?: string;
-}
 
-export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children, className }) => {
-  const [totalAmount, fetchCartItems, items] = useCartStore(state => [state.totalAmount, state.fetchCartItems, state.items]);
+export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
+  // const [redirecting, setRedirecting] = React.useState(false);
 
-  React.useEffect(() => {
-    fetchCartItems()
-  }, [])
+
+    const [totalAmount, fetchCartItems, updateItemQuantity, items] = useCartStore((state) => [
+      state.totalAmount, 
+      state.fetchCartItems,
+      state.updateItemQuantity,
+      state.items
+    ])
+
+    console.log(items)
+    React.useEffect(() => {
+      fetchCartItems();
+    }, [])
+
+    const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
+      const newQuantity = type === "plus" ? quantity + 1 : quantity - 1;
+      updateItemQuantity(id, newQuantity)
+    };
+
+ 
 
   return (
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
       <SheetContent className="flex flex-col justify-between pb-0 bg-[#F4F1EE]">
         <div className={clsx('flex flex-col h-full', !totalAmount && 'justify-center')}>
-          {totalAmount > 0 && (
+          { (
             <SheetHeader>
               <SheetTitle>
                 В корзине <span className="font-bold">{items.length} товара</span>
@@ -64,28 +74,33 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
             </div>
           )} */}
 
-          {totalAmount > 0 && (
-            <>
+          {/* { totalAmount > 0 && (
+            <> */}
               <div className="-mx-6 mt-5 overflow-auto flex-1">
-                {items.map((item) => (
-                  <div key={item.id} className="mb-2">
+                <div className="mb-2">
+                 {items.map((item) => (
                     <CartDrawerItem
+                      key={item.id}
                       id={item.id}
-                      name={item.name}
                       imageUrl={item.imageUrl}
+                      details={
+//Ошыбка
+                        // item.pizzaSize && item.pizzaType //pizzaSize, pizzaType  не передаются
+                        //   ? 
+                          getCartItemDetails(
+                              item.ingredients, 
+                              item.type as PizzaType, 
+                              item.pizzaSize as PizzaSize,
+                            ) 
+                          // : ''
+                      }
+                      name={item.name}
                       price={item.price}
                       quantity={item.quantity}
-                      details={item.pizzaSize && item.pizzaType 
-                        ? getCartItemDetails(
-                            item.ingredients,
-                            item.pizzaType as PizzaType,
-                            item.pizzaSize as PizzaSize,
-                      )
-                      : ''
-                    }
+                      onClickCountButton={(type) => onClickCountButton(item.id, item.quantity, type)}
                     />
-                  </div>
                 ))}
+                 </div>
               </div>
 
               <SheetFooter className="-mx-6 bg-white p-8">
@@ -101,7 +116,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
 
                   <Link href="/cart">
                     <Button
-                      onClick={() => (console.log("Hello"))}
+                      onClick={() => console.log('Hello')}
                     //   loading={loading || redirecting}
                       type="submit"
                       className="w-full h-12 text-base">
@@ -111,8 +126,9 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
                   </Link>
                 </div>
               </SheetFooter>
-            </>
-          )}
+            {/* </>
+          )} */}
+          
         </div>
       </SheetContent>
     </Sheet>
