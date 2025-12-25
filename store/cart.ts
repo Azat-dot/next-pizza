@@ -5,6 +5,7 @@ import { Api } from '@/services/api-client';
 
 
 export interface CartState {
+  removeCartItem: any;
   loading: boolean;
   error: boolean;
   totalAmount: number;

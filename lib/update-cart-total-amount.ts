@@ -7,7 +7,7 @@ export const updateCartTotalAmount = async (token: string) => {
             token,
         },
         include: {
-            items:{
+          items: {
                 orderBy: {
                     createdAt: 'desc',
                 },
@@ -40,7 +40,7 @@ export const updateCartTotalAmount = async (token: string) => {
             totalAmount,
         },
         include: {
-            items:{
+          items: {
                     orderBy: {
                         createdAt: 'desc',
                     },
