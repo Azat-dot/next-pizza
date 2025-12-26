@@ -20,6 +20,7 @@ import { usePizzaOptions } from '@/hooks';
 interface Props {
   imageUrl: string;
   name: string;
+  loading?: boolean;
   className?: string;
   ingredients: Ingredient[];
   items: ProductItem[];
@@ -31,6 +32,7 @@ export const ChoosePizzaForm: React.FC<Props> = ({
   items,
   imageUrl,
   ingredients,
+  loading,
   onSubmit,
   className,
 }) => {
@@ -85,6 +87,7 @@ const handleClickAdd = () => {
        
 
         <Button 
+          loading={loading}
           onClick={handleClickAdd}
           className="h-[55px] px-10 text-base rounded-[18px] w-full mt-10">
           Добавить в корзину за {totalPrice} ₽

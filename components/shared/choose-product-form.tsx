@@ -7,6 +7,7 @@ import { Title } from './title';
 interface Props {
   imageUrl: string;
   name: string;
+  loading?: boolean;
   price: number;
   className?: string;
   onSubmit?: VoidFunction;
@@ -17,6 +18,7 @@ export const ChooseProductForm: React.FC<Props> = ({
   price,
   imageUrl,
   onSubmit,
+  loading,
   className,
 }) => {
 
@@ -59,7 +61,7 @@ export const ChooseProductForm: React.FC<Props> = ({
         <Title text={name} size="md" className="font-extrabold mb-1" />
 
         <Button
-          // loading={loading}
+          loading={loading}
           onClick={onSubmit}
           className="h-[55px] px-10 text-base rounded-[18px] w-full mt-5">
           Добавить в корзину за {price} ₽

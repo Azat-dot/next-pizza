@@ -1,15 +1,14 @@
 import { mapType, PizzaSize, PizzaType } from "@/constants/pizza";
-import { Item } from "./get-cart-details";
+import { CartStateItem } from './get-cart-details'
 
 
 export const getCartItemDetails = (
-    ingredients: Item['ingredients'],
+    ingredients: CartStateItem['ingredients'],
     pizzaType: PizzaType,
     pizzaSize: PizzaSize,
 ): string => {
     const details = []
 
-    console.log(pizzaType, pizzaSize)
         if (pizzaSize && pizzaType) {
         const typeName = mapType[pizzaType];
         details.push(`${typeName} ${pizzaSize} см`);
