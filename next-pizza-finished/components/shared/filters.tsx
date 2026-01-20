@@ -9,7 +9,7 @@ import { Title } from './title';
 import { RangeSlider } from '../ui/range-slider';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useMap, useSet } from 'react-use';
-import debounce from 'lodash.debounce';
+import debounce from 'lodash/debounce';
 import { Api } from '@/services/api-client';
 import { Ingredient } from '@prisma/client';
 import { FilterCheckbox } from './filter-checkbox';

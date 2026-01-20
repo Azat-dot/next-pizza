@@ -73,6 +73,7 @@ export const useChoosePizza = (items?: IProduct['items']) => {
   };
 
   const textDetaills = pizzaDetailsToText(size, type);
+  console.log(textDetaills.map(details => details.mapSize))
 
   return {
     availablePizzaSizes,

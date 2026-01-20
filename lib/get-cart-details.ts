@@ -29,7 +29,7 @@ export const getCartDetails = (data: CartDTO): ReturnProps => {
       name: ingredient.name,
       price: ingredient.price,
     })),
-  }));
+  })) as CartStateItem[]
 
-  return { items, totalAmount: data.totalAmount || 0 };
+  return { items, totalAmount: data.totalAmount, };
 };

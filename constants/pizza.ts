@@ -11,12 +11,12 @@ export const mapType = {
 
 export type PizzaSizeItem = { value: string; name: string; disabled?: boolean };
 
-export const pizzaSizes = Object.entries(mapSize).map<PizzaSizeItem>(([value, name]) => ({
+export const pizzaSizes = Object.entries(mapSize).map(([value, name]) => ({
   name,
   value,
 }));
 
-export const pizzaTypes = Object.entries(mapType).map<PizzaSizeItem>(([value, name]) => ({
+export const pizzaTypes = Object.entries(mapType).map(([value, name]) => ({
   name,
   value,
 }));
@@ -30,3 +30,4 @@ export const pizzaDetailsToText = (size: PizzaSize, type: PizzaType) => {
 
   return `${size} см (${textSize}), ${textType} тесто`;
 };
+

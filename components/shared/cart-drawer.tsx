@@ -41,7 +41,6 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
       updateItemQuantity(id, newQuantity)
     };
 
- 
 
   return (
     <Sheet>
@@ -83,7 +82,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren> = ({ children }) => {
                         id={item.id}
                         imageUrl={item.imageUrl}
                         details={
-      // ощыбка отображение ingredients - из items
+      // ошибка отображение ingredients - из items
                            getCartItemDetails(
                                 item.ingredients, 
                                 item.pizzaType as PizzaType, 
